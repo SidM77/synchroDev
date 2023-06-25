@@ -5,6 +5,7 @@ import AuthModal from '../components/AuthModal'
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false)
+  const [isSignUp, setIsSignUp] = useState(true)
   const authToken = false
 
   const handleClick = () => {
@@ -19,6 +20,7 @@ const Home = () => {
         authToken={authToken}
         setShowModal={setShowModal}
         showModal={showModal}
+        setIsSignUp={setIsSignUp}
       />
       <div className="Home">
         {/* <h1>Find your Dev-partner today!</h1> */}

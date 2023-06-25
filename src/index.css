@@ -10,6 +10,10 @@ body {
   font-family: 'Roboto Mono', sans-serif;
 }
 
+h3 {
+  font-style: italic;
+}
+
 .primary-button {
   color: #fff;
   text-transform: uppercase;
@@ -21,6 +25,24 @@ body {
 }
 
 .primary-button:hover {
+  background: linear-gradient(120deg, rgb(58, 166, 185), rgb(255, 158, 170));
+}
+
+.secondary-button {
+  color: rgb(121, 119, 119);
+  background-color: white;
+  font-weight: 500px;
+  font-size: 15px;
+  text-transform: uppercase;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: solid 2px rgb(121, 119, 119);
+  margin: 6px;
+}
+
+.secondary-button:hover {
+  color: rgb(255, 255, 255);
+  border: solid 2px rgb(255, 255, 255);
   background: linear-gradient(120deg, rgb(58, 166, 185), rgb(255, 158, 170));
 }
 
@@ -85,4 +107,16 @@ nav .logo-container .logo {
 
 .auth-modal .close-button {
   float: right;
+}
+
+.auth-modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-modal input[type='password'],
+.auth-modal input[type='email'] {
+  padding: 8px;
+  margin: 8px;
+  font-size: 17px;
 }

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useState } from 'react'
 
-const AuthModal = ({ setShowModal }) => {
+const AuthModal = ({ setShowModal, setIsnSignUp, isSignUp }) => {
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
   const [confirmPassword, setConfirmPassword] = useState(null)
@@ -24,7 +24,6 @@ const AuthModal = ({ setShowModal }) => {
     }
   }
 
-  const isSignUp = true
   return (
     <div className="auth-modal">
       <div className="close-button" onClick={handleClick}>

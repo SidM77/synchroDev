@@ -11,6 +11,7 @@ const Home = () => {
   const handleClick = () => {
     console.log('clicked')
     setShowModal(true)
+    setIsSignUp(true)
   }
 
   return (
@@ -22,15 +23,21 @@ const Home = () => {
         showModal={showModal}
         setIsSignUp={setIsSignUp}
       />
-      <div className="Home">
+      <div className="home">
         {/* <h1>Find your Dev-partner today!</h1> */}
-        <h1>swipeRight!®</h1>
+        <h1 className="primary-title">swipeRight!®</h1>
 
         <button className="primary-button" onClick={handleClick}>
           {authToken ? 'Signout' : 'Create Account'}
         </button>
 
-        {showModal && <AuthModal setShowModal={setShowModal} />}
+        {showModal && (
+          <AuthModal
+            setShowModal={setShowModal}
+            setIsSignUp={setIsSignUp}
+            isSignUp={isSignUp}
+          />
+        )}
       </div>
     </div>
   )

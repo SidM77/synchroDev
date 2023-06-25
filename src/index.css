@@ -10,6 +10,11 @@ body {
   font-family: 'Roboto Mono', sans-serif;
 }
 
+.primary-title {
+  font-size: 3.8rem;
+  color: #fff;
+}
+
 h3 {
   font-style: italic;
 }
@@ -44,10 +49,6 @@ h3 {
   color: rgb(255, 255, 255);
   border: solid 2px rgb(255, 255, 255);
   background: linear-gradient(120deg, rgb(58, 166, 185), rgb(255, 158, 170));
-}
-
-body {
-  text-align: center;
 }
 
 /* NAVBAR STYLING */
@@ -85,17 +86,24 @@ nav .logo-container .logo {
   height: 100vh;
   position: fixed;
   background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.65) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+      to bottom,
+      rgba(25, 37, 40, 0.65) 20%,
+      rgba(168, 94, 158, 0) 100%
+    ),
+    url('./images/sssynchroDev.png');
+}
+
+.home {
+  margin-top: 30vh;
 }
 
 /* AUTH_MODAL */
 
 .auth-modal {
-  /*position: absolute;*/
-  top: 175px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50px;
   margin-left: auto;
   margin-right: auto;
   max-width: 360px;

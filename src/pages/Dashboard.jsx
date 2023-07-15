@@ -39,12 +39,19 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUser()
-    getSpecificUsers()
-  }, [user, specificUsers])
+  }, [])
+
+  useEffect(() => {
+    if (user) {
+      getSpecificUsers()
+    }
+  }, [user])
+
+  // console.log(specificUsers)
 
   const updateMatches = async (matchedUserId) => {
     try {
-      await axios.put('https://localhost:8000/addmatch', {
+      await axios.put('http://localhost:8000/addmatch', {
         userId,
         matchedUserId,
       })
@@ -53,6 +60,8 @@ const Dashboard = () => {
       console.log(e)
     }
   }
+
+  // console.log(user)
 
   const swiped = (direction, swipedUserId) => {
     if (direction === 'right') {
@@ -73,34 +82,45 @@ const Dashboard = () => {
     )
   }
 
+  const matchedUserIds = user?.matches
+    .map(({ user_id }) => user_id)
+    .concat(userId)
+
+  console.log(matchedUserIds)
+  // const filteredSpecificUsers = specificUsers?.filter(
+  //   specificUser
+  // )
+
   return (
     <>
-      <div className="dashboard">
-        <ChatContainer user={user} />
-        <div className="swiper-container">
-          <div className="card-container">
-            {specificUsers?.map((specificUser) => (
-              <TinderCard
-                className="swipe"
-                key={specificUser.first_name}
-                onSwipe={(dir) => swiped(dir, specificUser.user_id)}
-                onCardLeftScreen={() => outOfFrame(specificUser.first_name)}
-              >
-                <div
-                  style={{ backgroundImage: 'url(' + specificUser.url + ')' }}
-                  className="card"
+      {user && (
+        <div className="dashboard">
+          <ChatContainer user={user} />
+          <div className="swipe-container">
+            <div className="card-container">
+              {specificUsers?.map((specificUser) => (
+                <TinderCard
+                  className="swipe"
+                  key={specificUser.user_id}
+                  onSwipe={(dir) => swiped(dir, specificUser.user_id)}
+                  onCardLeftScreen={() => outOfFrame(specificUser.first_name)}
                 >
-                  <h3>{specificUser.first_name}</h3>
-                  <h4>{specificUser.about}</h4>
-                </div>
-              </TinderCard>
-            ))}
-            <div className="swipe-info">
-              {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}
+                  <div
+                    style={{ backgroundImage: 'url(' + specificUser.url + ')' }}
+                    className="card"
+                  >
+                    <h3>{specificUser.first_name}</h3>
+                    <h4>{specificUser.about}</h4>
+                  </div>
+                </TinderCard>
+              ))}
+              <div className="swipe-info">
+                {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   )
 }

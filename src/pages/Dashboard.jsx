@@ -28,7 +28,7 @@ const Dashboard = () => {
   const getSpecificUsers = async () => {
     try {
       const response = await axios.get('http://localhost:8000/specific-users', {
-        params: { domain: user?.domain_interest },
+        params: { domain: user?.domain_interest, userId },
       })
 
       setSpecificUsers(response.data)
@@ -77,7 +77,12 @@ const Dashboard = () => {
   if (user === null) {
     return (
       <div className="home">
-        <h1 className="loading">Loading...</h1>
+        {/* <h1 className="loading">Loading...</h1> */}
+        <img
+          className="loading-animation"
+          alt="Loading..."
+          src="https://64.media.tumblr.com/9ca4a2538e8fb61842aeebcbef3d9435/50fb637a17cfb891-a1/s640x960/c5aaef27140a7acb5442a25f5891d8d3afb0e9f4.gif"
+        ></img>
       </div>
     )
   }
@@ -86,17 +91,17 @@ const Dashboard = () => {
     .map(({ user_id }) => user_id)
     .concat(userId)
 
-  console.log(matchedUserIds)
-  // const filteredSpecificUsers = specificUsers?.filter(
-  //   specificUser
-  // )
+  // console.log(matchedUserIds)
+  const filteredSpecificUsers = specificUsers?.filter(
+    (specificUser) => !matchedUserIds.includes(specificUser.user_id)
+  )
 
   return (
     <>
       {user && (
         <div className="dashboard">
           <ChatContainer user={user} />
-          <div className="swipe-container">
+          <div className="swipe-container overlay2">
             <div className="card-container">
               {specificUsers?.map((specificUser) => (
                 <TinderCard
